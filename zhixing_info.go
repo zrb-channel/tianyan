@@ -15,13 +15,13 @@ import (
 // @param taxName
 // @param userName
 // @date 2022-05-17 19:27:37
-func ZhiXingInfo(ctx context.Context, taxName, userName string) (bool, decimal.Decimal, error) {
+func ZhiXingInfo(ctx context.Context, conf *AuthConfig, taxName, userName string) (bool, decimal.Decimal, error) {
 	params := map[string]string{
 		"name":      taxName,
 		"humanName": userName,
 	}
 
-	resp, err := utils.Request(ctx).SetBasicAuth("admin", "123456").SetQueryParams(params).Get("http://zrb8.cn/api/v1/zhixinginfo")
+	resp, err := utils.Request(ctx).SetBasicAuth(conf.Username, conf.Password).SetQueryParams(params).Get("http://tianyan.zrb8.cn/api/v1/zhixinginfo")
 	if err != nil {
 		return false, decimal.Decimal{}, err
 	}

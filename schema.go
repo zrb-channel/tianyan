@@ -3,6 +3,11 @@ package tianyan
 import "github.com/shopspring/decimal"
 
 type (
+	AuthConfig struct {
+		Username string `json:"username"`
+		Password string `json:"password"`
+	}
+
 	CommonResponse struct {
 		Reason    string `json:"reason"`
 		ErrorCode int    `json:"error_code"`
